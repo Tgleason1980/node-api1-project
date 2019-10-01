@@ -32,6 +32,47 @@ server.post('/users',(req, res)=>{
     })
 });
 
+server.delete('/users/:id', (req, res)=>{
+    const {id} = req.params;
+    db.remove(id)
+    .then (deletedUser => {
+        if (deletedUser) {
+            res.json(deletedUser);
+        }else{
+            res.status(404).json({
+                message: 'The user with the specified ID does not exist.'
+            })
+        }
+    })
+})
+
+server.put('/users/:id',(req, res)=>{
+const {id} = req.params;
+const data = req.body;
+db.update(id, data)
+.then(updated =>{
+    if (updated) {
+        res.json(updated);
+    }else{
+        res.status(404).json({
+            message: 'The user information could not be modified.'
+        })
+    }
+})
+})
+
+server.get('/users/:id', (req, res)=>{
+    const {id} = req.params;
+    db.findById(id)
+    .then(singleUser =>{
+        res.json(singleUser);
+    })
+    .catch(err =>{
+        res.status(500).json({
+            err: err
+        })
+    })
+})
 
 
 server.listen(5000, () =>{
