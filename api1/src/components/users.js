@@ -25,10 +25,10 @@ export default class Users extends React.Component {
     fetchUser = id => {
       
       axios
-        .get(`http://localhost:5000/api/users/${this.props.match.params.id}`)
+        .get(`http://localhost:5000/api/users/${id}`)
         .then(res => {
-          //console.log(res.data.id) 
-          this.props.setMovie(res.data)
+          console.log(this.props) 
+          this.props.setUser(res.data)
 
         })
         .catch(err => console.log(err.response));

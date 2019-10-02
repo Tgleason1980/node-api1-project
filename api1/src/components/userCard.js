@@ -1,6 +1,7 @@
 import React from 'react';
 
 
+
 const UserCard = props => {
   const  {name, bio}  = props.user;
  // console.log(props);

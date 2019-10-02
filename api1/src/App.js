@@ -7,14 +7,14 @@ import UpdateUser from "./components/updateUser.js";
 
 
 const App = (props) => {
-//   const InitialState = {
-//     name: "",
-//     bio: "",
+  const InitialState = {
+    name: "",
+    bio: "",
     
 
-// }
+}
   const [savedList, setSavedList] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState([InitialState]);
   
   console.log(user)
   const addToSavedList = user => {

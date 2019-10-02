@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link, Route } from "react-router-dom";
 import UserCard from "./userCard"
-import Users from "./users";
+
 
 export default class UserList extends Component {
   constructor(props) {
@@ -10,13 +10,14 @@ export default class UserList extends Component {
     this.state = {
       users: []
     };
+    
   }
 
   
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/users/")
+      .get("http://localhost:5000/api/users")
       .then(res => {
         this.setState({ users: res.data })}
         )
@@ -31,13 +32,15 @@ export default class UserList extends Component {
   render() {
 
 
-    //console.log(this.state.users)
+    console.log(this.state.users)
     return (
       <div>
           <button onClick = {(this.addUser)}>Add User</button>
         {this.state.users.map(user => (
           <UserDetails key={user.id} user={user} />
+          
         ))}
+        
         
       </div>
     
@@ -45,10 +48,12 @@ export default class UserList extends Component {
   }
 }
 
-function UserDetails({user }) {
+export function UserDetails({user }) {
+    console.log(user)
   return (
     <Link to={`/users/${user.id}`}>
       <UserCard  user={user} />
     </Link>
   );
 }
+
