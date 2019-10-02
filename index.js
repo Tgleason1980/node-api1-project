@@ -7,7 +7,7 @@ const server = express();
 server.use(express.json());
 //request handler
 
-server.get('/users',(req, res)=>{
+server.get('/api/users',(req, res)=>{
     db.find()
     .then(users =>{
         res.json(users);
@@ -19,7 +19,7 @@ server.get('/users',(req, res)=>{
     })
 });
 
-server.post('/users',(req, res)=>{
+server.post('/api/users',(req, res)=>{
     const newUser = req.body;
     db.insert(newUser)
     .then(user =>{
@@ -32,7 +32,7 @@ server.post('/users',(req, res)=>{
     })
 });
 
-server.delete('/users/:id', (req, res)=>{
+server.delete('/api/users/:id', (req, res)=>{
     const {id} = req.params;
     db.remove(id)
     .then (deletedUser => {
@@ -46,7 +46,7 @@ server.delete('/users/:id', (req, res)=>{
     })
 })
 
-server.put('/users/:id',(req, res)=>{
+server.put('/api/users/:id',(req, res)=>{
 const {id} = req.params;
 const data = req.body;
 db.update(id, data)
@@ -61,7 +61,7 @@ db.update(id, data)
 })
 })
 
-server.get('/users/:id', (req, res)=>{
+server.get('/api/users/:id', (req, res)=>{
     const {id} = req.params;
     db.findById(id)
     .then(singleUser =>{
