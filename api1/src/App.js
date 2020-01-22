@@ -30,6 +30,7 @@ const App = (props) => {
           return <UpdateUser {...props} updateUser = {setUser} user = {user}/>;
         }}
       />
+      
 
       <Route exact path="/" component={UserList} />
       <Route
